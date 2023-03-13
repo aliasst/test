@@ -5,7 +5,7 @@ require 'vendor/autoload.php';
 
 header('X-Developer: aliasst');
 
-$request = new Request();
+$request = (new Request())->withQueryParams($_GET)->withParsedBody($_POST);
 $name = $request->getQueryParams()['name'] ?? 'Guest';
 
 

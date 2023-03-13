@@ -4,13 +4,32 @@ namespace Framework\Http;
 
 class Request
 {
-    public function getQueryParams () :array
+
+    private $qweryParams = [];
+    private $parsedBody;
+
+
+    public function getQueryParams (): array
     {
-        return $_GET;
+        return $this->qweryParams;
+    }
+
+    public function withQueryParams(array $query): self
+    {
+        $new = clone $this;
+        $new->qweryParams = $query;
+        return $new;
     }
 
     public function getParsedBody()
     {
-        return $_POST ?: null;
+        return $this->parsedBody;
+    }
+
+    public function withParsedBody($data): self
+    {
+        $new = clone $this;
+        $new->parsedBody = $data;
+        return $new;
     }
 }
